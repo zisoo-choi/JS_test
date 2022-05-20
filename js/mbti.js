@@ -2,17 +2,18 @@ const main = document.querySelector("#main");
 const qna = document.querySelector("#qna");
 const result = document.querySelector("#result");
 
-const endPoint = 10;
+const endPoint = 10; //10단계
 
 const select = [0,0,0,0];
 
+//aBox
 function addAnswer(answerText,qIdx,idx){
     var a = document.querySelector(".aBox");
     var answer = document.createElement('button');
     
     answer.classList.add('answerList');
-    answer.classList.add('my-5');
-    answer.classList.add('py-3');
+    answer.classList.add('my-5'); //마진-y
+    answer.classList.add('py-3'); //패딩-y
     answer.classList.add('mx-auto');
     
     answer.classList.add('fadeIn');
@@ -34,7 +35,7 @@ function addAnswer(answerText,qIdx,idx){
             var target = qnaList[qIdx].a[idx].type;
 
             for(let i=0;i<target.length;i++){
-                select[target[i]]+=1 
+                select[target[i]]+=1 ;
             }
 
             for(let i=0;i<children.length;i++){
@@ -94,6 +95,7 @@ function goResult(){
     setResult();
 }
 
+//endPoint 도달할 경우 goResult 결과로 이동하는 함수
 function goNext(qIdx){
     if(qIdx == endPoint){
         goResult();
@@ -107,14 +109,17 @@ function goNext(qIdx){
     {
         addAnswer(qnaList[qIdx].a[i].answer,qIdx,i);
     }
+    //질문 단계 숫자 보여주기
     var countStatusNum = document.querySelector('.countStatus');
     countStatusNum.innerHTML = (qIdx+1)+"/"+endPoint;
 
+    //질문 단계 바 보여주기
     var status = document.querySelector('.statusBar');
     status.style.width = (100/endPoint)*(qIdx+1)+"%"
 
 }
 
+//웹 화면 애니메이션 적용
 function start(){
     main.style.WebkitAnimation = "fadeOut 1s";
     main.style.animation = "fadeOut 1s";
